@@ -7,14 +7,22 @@
 #include <QMetaType>
 #include <QString>
 #include <QTcpServer>
+#include <cstring>
+#include <string>
 #include <QTcpSocket>
+#include "HttpGenerator.h" 
+#include "HttpProcessor.h"
+#include <iostream>
+
+#define PORT 8080
+
+using namespace std;
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
@@ -26,19 +34,19 @@ signals:
 private slots:
     void newConnection();
     void appendToSocketList(QTcpSocket* socket);
-
     void readSocket();
     void discardSocket();
-
     void displayMessage(const QString& str);
-    void sendMessage(QTcpSocket* socket);
 
-    void sendMessage(QTcpSocket* socket, QString& message);
     void on_pushButton_sendMessage_clicked();
 
 private:
     Ui::MainWindow *ui;
+    /* QString buffer; */
+    char buffer[300000];
 
+    void sendMessage(QTcpSocket* socket, const char* message, int n);
+    void displayMessage(const char* str);
     QTcpServer* m_server;
     QList<QTcpSocket*> connection_list;
 };

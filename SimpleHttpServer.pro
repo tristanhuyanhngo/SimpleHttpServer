@@ -26,12 +26,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
-SOURCES += \
-        main.cpp \
-    mainwindow.cpp
+SOURCES += main.cpp \
+    mainwindow.cpp \
+    HttpGenerator.cpp \
+    HttpProcessor.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    HttpGenerator.h \
+    HttpProcessor.h
 
 FORMS += \
     mainwindow.ui

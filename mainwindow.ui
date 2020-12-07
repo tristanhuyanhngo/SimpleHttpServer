@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>QTCPServer</string>
+   <string>Simple Http Server</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgba(37, 37, 37, 179);</string>
@@ -48,21 +48,6 @@ padding: 5px;
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QComboBox" name="comboBox_receiver">
-      <property name="minimumSize">
-       <size>
-        <width>110</width>
-        <height>0</height>
-       </size>
-      </property>
-      <item>
-       <property name="text">
-        <string>Broadcast</string>
-       </property>
-      </item>
-     </widget>
-    </item>
     <item row="1" column="1">
      <widget class="QLineEdit" name="lineEdit_message">
       <property name="minimumSize">
@@ -88,7 +73,7 @@ border-radius: 10px;</string>
      <x>0</x>
      <y>0</y>
      <width>442</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
