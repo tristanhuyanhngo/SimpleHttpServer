@@ -1,0 +1,8 @@
+*.o
+.qmake.stash
+SimpleHttpServer
+*.pdf
+a
+test
+test.cpp
+Makefile
