@@ -79,9 +79,7 @@ void MainWindow::on_pushButton_sendMessage_clicked() {
 void MainWindow::sendMessage(QTcpSocket* socket, const char* message, int n) {
     if(socket) {
         if(socket->isOpen()) {
-            for (int i = 0; i < n; ++i) {
-                socket->putChar(message[i]);
-            }
+            socket->write(message, qint64(n));
         }
         else
             QMessageBox::critical(this,"QTCPServer","Socket doesn't seem to be opened");
