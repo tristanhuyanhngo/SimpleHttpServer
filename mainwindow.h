@@ -44,6 +44,7 @@ private:
     Ui::MainWindow *ui;
     /* QString buffer; */
     char buffer[300000];
+    HttpProcessor processor;
 
     void sendMessage(QTcpSocket* socket, const char* message, int n);
     void displayMessage(const char* str);

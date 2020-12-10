@@ -53,9 +53,13 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../main.cpp \
-		../mainwindow.cpp moc_mainwindow.cpp
+		../mainwindow.cpp \
+		../HttpGenerator.cpp \
+		../HttpProcessor.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		HttpGenerator.o \
+		HttpProcessor.o \
 		moc_mainwindow.o
 DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/common/unix.conf \
@@ -337,8 +341,12 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib64/qt5/mkspecs/features/yacc.prf \
 		/usr/lib64/qt5/mkspecs/features/lex.prf \
-		../../SimpleHttpServer.pro ../mainwindow.h ../main.cpp \
-		../mainwindow.cpp
+		../../SimpleHttpServer.pro ../mainwindow.h \
+		../HttpGenerator.h \
+		../HttpProcessor.h ../main.cpp \
+		../mainwindow.cpp \
+		../HttpGenerator.cpp \
+		../HttpProcessor.cpp
 QMAKE_TARGET  = SimpleHttpServer
 DESTDIR       = 
 TARGET        = SimpleHttpServer
@@ -928,8 +936,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib64/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../main.cpp ../mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../mainwindow.h ../HttpGenerator.h ../HttpProcessor.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../main.cpp ../mainwindow.cpp ../HttpGenerator.cpp ../HttpProcessor.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../mainwindow.ui $(DISTDIR)/
 
 
@@ -1002,6 +1010,13 @@ mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../HttpProcessor.h \
 		../ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../mainwindow.cpp
+
+HttpGenerator.o: ../HttpGenerator.cpp ../HttpGenerator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HttpGenerator.o ../HttpGenerator.cpp
+
+HttpProcessor.o: ../HttpProcessor.cpp ../HttpProcessor.h \
+		../HttpGenerator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HttpProcessor.o ../HttpProcessor.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

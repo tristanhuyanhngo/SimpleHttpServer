@@ -48,15 +48,9 @@ void MainWindow::readSocket() {
     qint64 block_size = socket->read(buffer, 300000);
 
     string response;
-    HttpProcessor::process(buffer, (qint64) block_size, response);
+    processor.process(buffer, (qint64) block_size, response);
     displayMessage(buffer);
-
-    char hello[] = "HTTP/1.1 200 OK\n"
-        "Content-Type: text/plain\n"
-        "Content-Length: 12\n"
-        "\n"
-        "Hello world!";
-    /* int n = sizeof(hello) / sizeof(char); */
+    displayMessage("===============================================");
 
     cout << response << '\n';
     sendMessage(socket, response.c_str(), response.size());

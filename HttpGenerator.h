@@ -14,11 +14,11 @@ extern map<int, string> statusCode;
 
 class HttpGenerator {
     private:
-        static string generateHeader(int code, size_t contentSize);
+        static string generateHeader(int code, size_t contentSize, string type);
     public:
 
         /* Read and display html file */
-        static string htmlString(string fileDir);
+        static string htmlString(string fileDir, string type);
 };
 
 #endif /* HTTPGENERATOR_H */

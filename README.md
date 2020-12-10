@@ -10,6 +10,8 @@ A simple http server, written as an exercise for my network class.
 
 - By using port 8080, the browser can send requests and receive responses from the server.
 
+- POST: Send data to the server.
+
 # References
 
 - https://www.w3.org/Protocols/rfc2616/rfc2616.html
