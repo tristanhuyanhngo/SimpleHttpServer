@@ -2,8 +2,7 @@
 #define FILEMANAGER_H
 
 
-class FileManager
-{
+class FileManager {
 public:
     FileManager();
 };

@@ -64,7 +64,6 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
     }
     
     if (request == "GET") {
-
         if (content == "/") 
             content = "/index.html";
 

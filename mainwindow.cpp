@@ -18,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 }
 
 MainWindow::~MainWindow() {
-
     foreach (QTcpSocket* socket, connection_list) {
         socket->close();
         socket->deleteLater();
@@ -52,7 +51,7 @@ void MainWindow::readSocket() {
     displayMessage(buffer);
     displayMessage("===============================================");
 
-    /* cout << response << '\n'; */
+    cout << response << '\n';
     sendMessage(socket, response.c_str(), response.size());
 }
 

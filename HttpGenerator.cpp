@@ -2,25 +2,33 @@
 
 map<int, string> statusCode = {
     {200, "OK"},
+    {404, "Not found"},
 };
 
 string HttpGenerator::header(int code, size_t contentSize, string type) {
   string ans = "HTTP/1.1 " + to_string(code) + ' ' + statusCode[code] + '\n';
-  ans.append("Content-Type: " + type + ";\n");
+  ans.append("Content-Type: " + type + "\n");
   ans.append("Content-Length: " + to_string(contentSize) + '\n');
   ans.push_back('\n');
   return ans;
 }
 
 string HttpGenerator::htmlString(string fileDir, string type) {
-    ifstream ifs(fileDir);
+    ifstream ifs;
+    ifs.open(fileDir);
+    int code = 200;
     string tmp, ans;
     string htmlContent;
+    if (! ifs) {
+        code = 404;
+        ifs.open("./pages/404.html", ios::in);
+    }
     while (getline(ifs, tmp)) {
         htmlContent += tmp + '\n';
     }
     ifs.close();
-    ans = header(200, htmlContent.size(), type) + htmlContent + '\n';
+
+    ans = header(code, htmlContent.size(), type) + htmlContent + '\n';
     return ans;
 }
 
