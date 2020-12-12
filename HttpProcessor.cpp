@@ -1,6 +1,8 @@
 #include "HttpProcessor.h"
 
 map<string, string> HttpProcessor::data;
+UserManager HttpProcessor::usm;
+FileType HttpProcessor::ft;
 
 void HttpProcessor::process(char *msg, qint64 sz, string& response) {
     string request;
@@ -27,10 +29,8 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
             while (msg[i] != ',' && msg[i] != '\n') {
                 tmp2 += msg[i++];
             }
-            /* m[tmp] = tmp2; */
-            /* cerr << tmp << ' ' << tmp2 << '\n'; */
             data[tmp] = tmp2;
-            if (tmp == "Accept") cerr << tmp2 << '\n';
+            /* if (tmp == "Accept") cerr << tmp2 << '\n'; */
             tmp.clear();
             continue;
         }
@@ -39,13 +39,39 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
         }
         tmp += msg[i];
     }
+
+    if (request == "POST") {
+        string usr, pwd;
+        int i = 0;
+        cout << "Login in...\n";
+        for (; i < (int) tmp.size() && tmp[i] != '&'; ++i);
+        usr = tmp.substr(0, i);
+        usr = usr.substr(7);
+        int j = tmp.size() - 1;
+        for (; j >= 0 && tmp[j] != '&'; --j);
+        i += 1;
+        pwd = tmp.substr(i, j - i);
+        pwd = pwd.substr(4);
+        cerr << usr << ' ' << pwd << '\n';
+        if (! usm.check(usr, pwd)) {
+            response = HttpGenerator::redirection("/404.html", "./pages/404.html");
+            /* cout << response << '\n'; */
+        }
+        else {
+            response = HttpGenerator::redirection("/info.html", "./pages/info.html");
+        }
+        return; 
+    }
     
     if (request == "GET") {
+
+        if (content == "/") 
+            content = "/index.html";
+
         content = "./pages" + content;
         cerr << request << ' ' << content << '\n';
         /* response = HttpGenerator::htmlString(content, data["Accept"]); */
-        response = HttpGenerator::htmlString(content, "*/*");
+        response = HttpGenerator::htmlString(content, ft.getFileType(content));
     }
-
 }
 

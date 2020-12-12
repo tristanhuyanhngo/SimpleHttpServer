@@ -18,4 +18,4 @@ A simple http server, written as an exercise for my network class.
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
 - https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 - https://medium.com/from-the-scratch/http-server-what-do-you-need-to-know-to-build-a-simple-http-server-from-scratch-d1ef8945e4fa
-
+- https://en.wikipedia.org/wiki/Favicon

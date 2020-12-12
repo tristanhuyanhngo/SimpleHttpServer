@@ -1,11 +1,13 @@
 #ifndef HTTPPROCESSOR_H
-#define HTTPPROCESSOR_H 
+#define HTTPPROCESSOR_H
 
-#include <cstring>
-#include <string>
-#include <QMetaType>
 #include "HttpGenerator.h"
+#include "filetype.h"
+#include "usermanager.h"
+#include <QMetaType>
+#include <cstring>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -13,7 +15,9 @@ using namespace std;
 
 class HttpProcessor {
     private: 
+        static FileType ft;
         static map<string, string> data;
+        static UserManager usm;
     public:
         void process(char* msg, qint64 sz, string& response);
 };

@@ -52,7 +52,7 @@ void MainWindow::readSocket() {
     displayMessage(buffer);
     displayMessage("===============================================");
 
-    cout << response << '\n';
+    /* cout << response << '\n'; */
     sendMessage(socket, response.c_str(), response.size());
 }
 
