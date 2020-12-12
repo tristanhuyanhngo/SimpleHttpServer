@@ -26,8 +26,8 @@ string HttpGenerator::htmlString(string fileDir, string type) {
     while (getline(ifs, tmp)) {
         htmlContent += tmp + '\n';
     }
+    ans += '\n';
     ifs.close();
-
     ans = header(code, htmlContent.size(), type) + htmlContent + '\n';
     return ans;
 }

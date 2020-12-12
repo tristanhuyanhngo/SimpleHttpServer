@@ -52,7 +52,7 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
         i += 1;
         pwd = tmp.substr(i, j - i);
         pwd = pwd.substr(4);
-        cerr << usr << ' ' << pwd << '\n';
+        /* cerr << usr << ' ' << pwd << '\n'; */
         if (! usm.check(usr, pwd)) {
             response = HttpGenerator::redirection("/404.html", "./pages/404.html");
             /* cout << response << '\n'; */
@@ -68,7 +68,7 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
             content = "/index.html";
 
         content = "./pages" + content;
-        cerr << request << ' ' << content << '\n';
+        /* cerr << request << ' ' << content << '\n'; */
         /* response = HttpGenerator::htmlString(content, data["Accept"]); */
         response = HttpGenerator::htmlString(content, ft.getFileType(content));
     }

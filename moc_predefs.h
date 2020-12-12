@@ -177,7 +177,7 @@
 #define __DEC128_MAX__ 9.999999999999999999999999999999999E6144DL
 #define __FLT_MANT_DIG__ 24
 #define __LDBL_DECIMAL_DIG__ 21
-#define __VERSION__ "10.2.1 20201117 [revision 98ba03ffe0b9f37b4916ce6238fad754e00d720b]"
+#define __VERSION__ "10.2.1 20201202 [revision e563687cf9d3d1278f45aaebd03e0f66531076c9]"
 #define __UINT64_C(c) c ## UL
 #define __cpp_unicode_characters 200704L
 #define _STDC_PREDEF_H 1
