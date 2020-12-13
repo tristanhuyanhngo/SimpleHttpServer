@@ -47,18 +47,32 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
         for (; i < (int) tmp.size() && tmp[i] != '&'; ++i);
         usr = tmp.substr(0, i);
         usr = usr.substr(7);
-        int j = tmp.size() - 1;
-        for (; j >= 0 && tmp[j] != '&'; --j);
+        int j = i + 1;
+        for (; j < (int) tmp.size() && tmp[j] != '&'; ++j);
         i += 1;
         pwd = tmp.substr(i, j - i);
         pwd = pwd.substr(4);
-        /* cerr << usr << ' ' << pwd << '\n'; */
+        string reformated;
+        int ii;
+        char ch;
+        for (int i = 0; i < (int) pwd.size(); ++i) {
+            if (pwd[i] == '%') {
+                sscanf(pwd.substr(i + 1, 2).c_str(), "%x", &ii);
+                ch = static_cast<char>(ii);
+                reformated += ch;
+                i = i + 2;
+            }
+            else reformated += pwd[i];
+        }
+        pwd = reformated;
+        cout << usr << ' ' << pwd << '\n';
+
+
         if (! usm.check(usr, pwd)) {
-            response = HttpGenerator::redirection("/404.html", "./pages/404.html");
-            /* cout << response << '\n'; */
+            response = HttpGenerator::htmlString(404, "./pages/404/index.html", "text/html");
         }
         else {
-            response = HttpGenerator::redirection("/info.html", "./pages/info.html");
+            response = HttpGenerator::redirection("/Information/index.html", "./pages/Information/index.html");
         }
         return; 
     }
@@ -68,14 +82,22 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
             response = HttpGenerator::redirection("/Login/index.html", "./pages/Login/index.html");
             return;
         }
+        string reformated;
+        int ii;
+        char ch;
         for (int i = 0; i < content.size(); ++i) {
-            if (content[i] == '%') content[i] = ' ';
+            if (content[i] == '%') {
+                sscanf(content.substr(i+1,2).c_str(), "%x", &ii);
+                ch = static_cast<char>(ii);
+                reformated += ch;
+                i = i + 2;
+            }
+            else reformated += content[i];
         }
-        cout << content[i] << '\n';
+        /* cout << reformated << '\n'; */
+        content = reformated;
         content = "./pages" + content;
-        /* cerr << request << ' ' << content << '\n'; */
-        /* response = HttpGenerator::htmlString(content, data["Accept"]); */
-        response = HttpGenerator::htmlString(content, ft.getFileType(content));
+        response = HttpGenerator::htmlString(200, content, ft.getFileType(content));
     }
 }
 

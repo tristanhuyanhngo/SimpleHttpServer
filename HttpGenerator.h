@@ -18,7 +18,7 @@ class HttpGenerator {
     public:
 
         /* Read and display html file */
-        static string htmlString(string fileDir, string type);
+        static string htmlString(int code, string fileDir, string type);
         static string redirection(string location, string fileDir);
 };
 

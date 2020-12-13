@@ -13,10 +13,9 @@ string HttpGenerator::header(int code, size_t contentSize, string type) {
   return ans;
 }
 
-string HttpGenerator::htmlString(string fileDir, string type) {
+string HttpGenerator::htmlString(int code, string fileDir, string type) {
     ifstream ifs;
     ifs.open(fileDir);
-    int code = 200;
     string tmp, ans;
     string htmlContent;
     if (! ifs) {

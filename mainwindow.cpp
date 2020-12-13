@@ -45,14 +45,13 @@ void MainWindow::appendToSocketList(QTcpSocket* socket) {
 void MainWindow::readSocket() {
     QTcpSocket* socket = reinterpret_cast<QTcpSocket*>(sender());
     qint64 block_size = socket->read(buffer, 300000);
-
     string response;
     processor.process(buffer, (qint64) block_size, response);
     displayMessage(buffer);
     displayMessage("===============================================");
     /* displayMessage(QString::fromUtf8(response.c_str())); */
     /* displayMessage("==============================================="); */
-    cout << response << '\n';
+    /* cout << response << '\n'; */
     sendMessage(socket, response.c_str(), response.size());
 }
 
