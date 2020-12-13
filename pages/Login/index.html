@@ -28,29 +28,30 @@
     </div>
     <!-- backbox -->
 
-    <div class="frontbox">
+    <form class="modal-content animate" action="/action_page.php" method="post">
+      <div class="frontbox">
       <div class="login">
         <h2>LOG IN</h2>
         <div class="inputbox">
-          <input type="text" name="email" placeholder="  USERNAME">
-          <input type="password" name="password" placeholder="  PASSWORD">
+          <input type="text" name="uname" placeholder="  USERNAME">
+          <input type="password" name="pwd" placeholder="  PASSWORD">
         </div>
         <p>FORGOT PASSWORD ?</p>
-        <button>LOG IN</button>
+        <button type = "submit">LOG IN</button>
       </div>
-
       <div class="signup hide">
         <h2>SIGN UP</h2>
         <div class="inputbox">
-          <input type="text" name="fullname" placeholder="  FULL NAME">
+          <input type="text" name="fullname" placeholder="  FULL NAME" >
           <input type="text" name="email" placeholder="  EMAIL">
           <input type="password" name="password" placeholder="  PASSWORD">
         </div>
-        <button>SIGN UP</button>
+        <button type = "submit">SIGN UP</button>
       </div>
-
-    </div>
+      </div>
+    </form>
     <!-- frontbox -->
+   
   </div>
 </body>
 

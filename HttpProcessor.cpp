@@ -64,9 +64,14 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
     }
     
     if (request == "GET") {
-        if (content == "/") 
-            content = "/index.html";
-
+        if (content == "/") {
+            response = HttpGenerator::redirection("/Login/index.html", "./pages/Login/index.html");
+            return;
+        }
+        for (int i = 0; i < content.size(); ++i) {
+            if (content[i] == '%') content[i] = ' ';
+        }
+        cout << content[i] << '\n';
         content = "./pages" + content;
         /* cerr << request << ' ' << content << '\n'; */
         /* response = HttpGenerator::htmlString(content, data["Accept"]); */
