@@ -3,7 +3,6 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-
     /* Setting up a new QTcpServer */ 
     m_server = new QTcpServer();
     if(m_server->listen(QHostAddress::Any, PORT)) {
@@ -15,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         QMessageBox::critical(this,"QTCPServer",QString("Unable to start the server: %1.").arg(m_server->errorString()));
         exit(EXIT_FAILURE);
     }
+    FileManager fm("./pages/download/");
 }
 
 MainWindow::~MainWindow() {

@@ -10,6 +10,7 @@
 #include <cstring>
 #include <string>
 #include <QTcpSocket>
+#include "filemanager.h"
 #include "HttpGenerator.h" 
 #include "HttpProcessor.h"
 #include <iostream>
