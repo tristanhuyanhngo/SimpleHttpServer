@@ -52,7 +52,8 @@ void MainWindow::readSocket() {
     /* displayMessage(QString::fromUtf8(response.c_str())); */
     /* displayMessage("==============================================="); */
     /* cout << response << '\n'; */
-    sendMessage(socket, response.c_str(), response.size());
+    if (response != "")
+        sendMessage(socket, response.c_str(), response.size());
 }
 
 void MainWindow::discardSocket() {
