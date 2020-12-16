@@ -85,7 +85,7 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
         string reformated;
         int ii;
         char ch;
-        for (int i = 0; i < content.size(); ++i) {
+        for (int i = 0; i < (int) content.size(); ++i) {
             if (content[i] == '%') {
                 sscanf(content.substr(i+1,2).c_str(), "%x", &ii);
                 ch = static_cast<char>(ii);
@@ -94,7 +94,6 @@ void HttpProcessor::process(char *msg, qint64 sz, string& response) {
             }
             else reformated += content[i];
         }
-        /* cout << reformated << '\n'; */
         content = reformated;
         content = "./pages" + content;
         response = HttpGenerator::htmlString(200, content, ft.getFileType(content));
